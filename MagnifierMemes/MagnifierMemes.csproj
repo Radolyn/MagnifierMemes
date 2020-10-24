@@ -8,10 +8,17 @@
     <ItemGroup>
       <PackageReference Include="PInvoke.Magnification" Version="0.7.78" />
       <PackageReference Include="PInvoke.User32" Version="0.7.78" />
+      <PackageReference Include="RadLibrary" Version="1.4.2" />
     </ItemGroup>
 
     <ItemGroup>
       <Reference Include="System.Windows.Forms" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="assets\music.wav">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
