@@ -49,6 +49,8 @@ namespace MagnifierMemes
             }
             // /permissions fix
 
+            await Task.Delay(100);
+
             var config = AppConfiguration.Initialize<FileManager>("memes");
 
             var scheme = new ConfigurationScheme();
@@ -61,12 +63,12 @@ namespace MagnifierMemes
             {
                 var attr = meme.GetCustomAttribute<MemeAttribute>();
 
-                scheme.AddParameter(attr.Name, false, attr.Description, typeof(bool));
+                scheme.AddParameter(attr.Name, false, attr.Description, typeof(string));
 
                 if (attr.AdditionalParameters == null || attr.AdditionalParameters.Length == 0) continue;
 
                 foreach (var parameter in attr.AdditionalParameters)
-                    scheme.AddParameter(parameter, false, $"Additional parameter for '{attr.Name}'", typeof(bool));
+                    scheme.AddParameter(parameter, false, $"Additional parameter for '{attr.Name}'", typeof(string));
             }
 
             config.EnsureScheme(scheme);

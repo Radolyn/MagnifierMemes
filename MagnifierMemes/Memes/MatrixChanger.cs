@@ -10,123 +10,17 @@ using RadLibrary.Configuration;
 
 namespace MagnifierMemes.Memes
 {
-    [Meme("color_changer", "Changes colors on the screen", "smooth_changing")]
+    [Meme("color_changer", "Changes colors on the screen", "smooth_changing", "sleep_time")]
     public class MatrixChanger : IMeme
     {
         private readonly AppConfiguration _configuration;
-
-        private readonly List<float[,]> _matrices = new List<float[,]>
-        {
-            new[,]
-            {
-                {1.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 1.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 1.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {-1.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, -1.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, -1.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {0.3f, 0.3f, 0.3f, 0.0f, 0.0f},
-                {0.6f, 0.6f, 0.6f, 0.0f, 0.0f},
-                {0.1f, 0.1f, 0.1f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {1.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {.393f, .349f, .272f, 0.0f, 0.0f},
-                {.769f, .686f, .534f, 0.0f, 0.0f},
-                {.189f, .168f, .131f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {-0.3333333f, 0.6666667f, 0.6666667f, 0.0f, 0.0f},
-                {0.6666667f, -0.3333333f, 0.6666667f, 0.0f, 0.0f},
-                {0.6666667f, 0.6666667f, -0.3333333f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {1.0f, -1.0f, -1.0f, 0.0f, 0.0f},
-                {-1.0f, 1.0f, -1.0f, 0.0f, 0.0f},
-                {-1.0f, -1.0f, 1.0f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {0.39f, -0.62f, -0.62f, 0.0f, 0.0f},
-                {-1.21f, -0.22f, -1.22f, 0.0f, 0.0f},
-                {-0.16f, -0.16f, 0.84f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {1.089508f, -0.9326327f, -0.932633042f, 0.0f, 0.0f},
-                {-1.81771779f, 0.1683074f, -1.84169245f, 0.0f, 0.0f},
-                {-0.244589478f, -0.247815639f, 1.7621845f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {0.50f, -0.78f, -0.78f, 0.0f, 0.0f},
-                {-0.56f, 0.72f, -0.56f, 0.0f, 0.0f},
-                {-0.94f, -0.94f, 0.34f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {0.23f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0f, 0.49f, 0.0f, 0.0f, 0.0f},
-                {0f, 0f, 0.96f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {0.56f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0f, 0.89f, 0.0f, 0.0f, 0.0f},
-                {0f, 0f, -0.22f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 0.69f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            },
-            new[,]
-            {
-                {-0.59f, 0.0f, 0.0f, 0.0f, 0.0f},
-                {0f, -0.30f, 0.0f, 0.0f, 0.0f},
-                {0f, 0f, 0.90f, 0.0f, 0.0f},
-                {0.0f, 0.0f, 0.0f, 1.0f, 0.0f},
-                {1.0f, 1.0f, 1.0f, 0.0f, 1.0f}
-            }
-        };
 
         public MatrixChanger(AppConfiguration configuration)
         {
             _configuration = configuration;
         }
+
+        private static List<float[,]> Matrices => GenerateMatrices();
 
         /// <inheritdoc />
         public async Task Execute()
@@ -139,13 +33,15 @@ namespace MagnifierMemes.Memes
                 return;
             }
 
+            var timeoutSet = int.TryParse(_configuration["sleep_time"], out var sleepTime);
+
             var effect = new Magnification.MAGCOLOREFFECT();
 
             var random = new Random();
 
             for (var i = 0; i < int.MaxValue; i++)
             {
-                var matr = _matrices[random.Next(0, _matrices.Count - 1)];
+                var matr = Matrices[random.Next(0, Matrices.Count - 1)];
 
                 var t = random.Next(0, 8);
 
@@ -161,7 +57,7 @@ namespace MagnifierMemes.Memes
                         matr = MoreRed(matr);
                         break;
                     default:
-                        matr = Multiply(matr, _matrices[random.Next(0, _matrices.Count - 1)]);
+                        matr = Multiply(matr, Matrices[random.Next(0, Matrices.Count - 1)]);
                         break;
                 }
 
@@ -205,7 +101,44 @@ namespace MagnifierMemes.Memes
                         await Task.Delay(15);
                     }
                 }
+
+                if (timeoutSet)
+                    await Task.Delay(sleepTime);
             }
+        }
+
+        private static List<float[,]> GenerateMatrices()
+        {
+            var l = new List<float[,]>(50);
+
+            var rnd = new Random();
+
+            for (var i = 0; i < l.Capacity; i++)
+                l.Add(new[,]
+                {
+                    {
+                        rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4),
+                        rnd.NextFloat(-4, 4)
+                    },
+                    {
+                        rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4),
+                        rnd.NextFloat(-4, 4)
+                    },
+                    {
+                        rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4),
+                        rnd.NextFloat(-4, 4)
+                    },
+                    {
+                        rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4),
+                        rnd.NextFloat(-4, 4)
+                    },
+                    {
+                        rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4), rnd.NextFloat(-4, 4),
+                        rnd.NextFloat(-4, 4)
+                    }
+                });
+
+            return l;
         }
 
         public static float[,] MoreBlue(float[,] colorMatrix)
