@@ -33,7 +33,7 @@ namespace MagnifierMemes.Memes
                 return;
             }
 
-            var timeoutSet = int.TryParse(_configuration["sleep_time"], out var sleepTime);
+            var timeoutSet = int.TryParse(_configuration["matrix_sleep_time"], out var sleepTime);
 
             var effect = new Magnification.MAGCOLOREFFECT();
 

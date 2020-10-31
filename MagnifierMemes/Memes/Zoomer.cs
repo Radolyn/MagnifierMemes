@@ -30,7 +30,7 @@ namespace MagnifierMemes.Memes
                 return;
             }
 
-            var timeoutSet = int.TryParse(_configuration["sleep_time"], out var sleepTime);
+            var timeoutSet = int.TryParse(_configuration["zoomer_sleep_time"], out var sleepTime);
 
             var rnd = new Random();
 
