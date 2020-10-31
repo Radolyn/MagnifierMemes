@@ -49,9 +49,18 @@ namespace MagnifierMemes
             }
             // /permissions fix
 
-            await Task.Delay(100);
+            AppConfiguration config;
 
-            var config = AppConfiguration.Initialize<FileManager>("memes");
+            try
+            {
+                config = AppConfiguration.Initialize<FileManager>("memes");
+            }
+            catch
+            {
+                Application.Restart();
+                Environment.Exit(-1);
+                return;
+            }
 
             var scheme = new ConfigurationScheme();
 

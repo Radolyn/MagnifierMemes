@@ -10,7 +10,7 @@ using RadLibrary.Configuration;
 
 namespace MagnifierMemes.Memes
 {
-    [Meme("color_changer", "Changes colors on the screen", "smooth_changing", "sleep_time")]
+    [Meme("color_changer", "Changes colors on the screen", "smooth_changing", "matrix_sleep_time")]
     public class MatrixChanger : IMeme
     {
         private readonly AppConfiguration _configuration;
@@ -39,7 +39,7 @@ namespace MagnifierMemes.Memes
 
             var random = new Random();
 
-            for (var i = 0; i < int.MaxValue; i++)
+            while (true)
             {
                 var matr = Matrices[random.Next(0, Matrices.Count - 1)];
 
